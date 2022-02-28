@@ -1,0 +1,551 @@
+<!DOCTYPE html >
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="http://wp.mom2000.com/xmlrpc.php" />
+<title>Проектиране на база от данни чрез релационен синтез &#8211; размисли</title>
+<link rel="alternate" type="application/rss+xml" title="размисли &raquo; Feed" href="http://wp.mom2000.com/feed" />
+<link rel="alternate" type="application/rss+xml" title="размисли &raquo; Comments Feed" href="http://wp.mom2000.com/comments/feed" />
+<link rel="alternate" type="application/rss+xml" title="размисли &raquo; Проектиране на база от данни чрез релационен синтез Comments Feed" href="http://wp.mom2000.com/archives/990/feed" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/wp.mom2000.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.5"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;if(!g||!g.fillText)return!1;switch(g.textBaseline="top",g.font="600 32px Arial",a){case"flag":return g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3;case"diversity":return g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e;case"simple":return g.fillText(h(55357,56835),0,0),0!==g.getImageData(16,16,1,1).data[0];case"unicode8":return g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='google-font-merriweather-css'  href='//fonts.googleapis.com/css?family=Merriweather%3A400%2C300%2C300italic%2C700%2C400italic%2C700italic%2C900%2C900italic&#038;ver=4.5' type='text/css' media='all' />
+<link rel='stylesheet' id='google-font-oswald-css'  href='//fonts.googleapis.com/css?family=Oswald%3A400%2C300%2C700&#038;ver=4.5' type='text/css' media='all' />
+<link rel='stylesheet' id='actuate-font-awesome-css'  href='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/css/font-awesome.4.4.0.css?ver=4.4.0' type='text/css' media='all' />
+<link rel='stylesheet' id='actuate-stylesheet-css'  href='http://wp.mom2000.com/wp-content/themes/actuate/style.css?ver=1.0.1.4' type='text/css' media='all' />
+<script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/jquery/jquery.js?ver=1.12.3'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.0'></script>
+<link rel='https://api.w.org/' href='http://wp.mom2000.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://wp.mom2000.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://wp.mom2000.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Инсталация на Windows XP върху Asus Eee PC 900' href='http://wp.mom2000.com/archives/37' />
+<link rel='next' title='Новини връзки' href='http://wp.mom2000.com/archives/665' />
+<meta name="generator" content="WordPress 4.5" />
+<link rel="canonical" href="http://wp.mom2000.com/archives/990" />
+<link rel='shortlink' href='http://wp.mom2000.com/?p=990' />
+<link rel="alternate" type="application/json+oembed" href="http://wp.mom2000.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwp.mom2000.com%2Farchives%2F990" />
+<link rel="alternate" type="text/xml+oembed" href="http://wp.mom2000.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwp.mom2000.com%2Farchives%2F990&#038;format=xml" />
+
+<!--[if lt IE 9]><script type='text/javascript' src='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/js/respond.min.js?ver=1.4.2'></script><![endif]-->
+<style type="text/css">
+.wrapper .site-title a{color:#555555;}.wrapper .site-description{color:#555555;}.wrapper .loop-post-title h1 a{color:#444444;}.wrapper .loop-post-meta{color:#000000;}.wrapper .loop-post-excerpt p{color:#000000;}body.single .wrapper .post-title h1{color:#000000;}body.single .wrapper .post-meta,.single .post-meta .post-meta-comments a{color:#000000;}body.single .wrapper .post-content{color:#000000;}
+
+</style>
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body class="singular single single-post postid-990 single-format-standard orange right_sidebar theme-wide">
+    <div id="parent-wrapper" class="parent-wrapper grid-col-16">
+        <div id="wrapper" class="wrapper grid-col-16">
+            
+                        <div class="header-bg-section clearfix">
+                <div id="header-section" class="header-section grid-col-16 clearfix">
+                    <div id="logo-section" class="logo-section grid-col-16">        
+        <div id="site-title" class="site-title">
+            <a href="http://wp.mom2000.com/" title="размисли | " rel="home">размисли</a>
+        </div>
+        
+    </div>
+                                                    <div id="sidrmenu-section" class="sidrmenu-section">    <div id="sidr-menu">
+    	<ul>
+            <li class="page_item page-item-160"><a href="http://wp.mom2000.com/">Препоръчано</a></li>
+        </ul>
+    </div>
+</div>
+                            <div id="nav-section" class="nav-section grid-col-16">
+                                <div id="primarymenu-resp" class="primarymenu-resp"><i class="mdf mdf-bars"></i><span>Menu</span></div>
+                                <div id="primarymenu-section" class="primarymenu-section clearfix nav">    <div id="menu">
+    	<ul class="sf-menu" id="actuate_menu">
+            <li class="page_item page-item-160"><a href="http://wp.mom2000.com/">Препоръчано</a></li>
+        </ul>
+    </div>
+</div>
+                            </div>
+                        
+                </div><!-- header section ends -->
+            </div><!-- header bg section ends -->
+            		
+            <div id="main-section" class="main-section clearfix">
+
+<div id="content-section" class="content-section grid-col-16 clearfix">
+    <div id="post-990" class="inner-post-section post-990 post type-post status-publish format-standard hentry category-uncategorized">
+	
+        <div class="post-title">
+                            <h1 class="inner-page">Проектиране на база от данни чрез релационен синтез</h1>
+            
+                        <div class="post-meta">
+                <span class="entry-date">April 3, 2016</span><span class="meta-author-url">, By <span class="author vcard"><a href="http://wp.mom2000.com/archives/author/admin" title="Posts by admin" rel="author">admin</a></span> </span> | <span class="post-meta-comments"><a href=http://wp.mom2000.com/archives/990#respond>Leave a reply</a></span>            </div>
+                </div>
+
+        <div class="post-content">
+             <p><span id="more-990"></span></p>
+<p><strong>НОВ БЪЛГАРСКИ УНИВЕРСИТЕТ</strong></p>
+<p><strong>РЕДОВНО ОБУЧЕНИЕ</strong></p>
+<p>CSCB695 Самостоятелна работа по разпределени и обектно – ориентирани бази от данни</p>
+<p><strong>ТЕМА</strong></p>
+<p>Представяне и описание на конкретна методология за проектиране на база от данни чрез релационен синтез</p>
+<p><strong>Програма : </strong>Софтуерни технологии в интернет</p>
+<p><strong>Курс : </strong>CSCB695 Самостоятелна работа по разпределени и обектно – ориентирани бази от данни</p>
+<p><strong>Преподавател :</strong> доц. д-р Юлиана Пенева</p>
+<p><strong>Студент : </strong>******************************</p>
+<p><strong>ПРОЕКТИРАНЕ НА БАЗА ОТ ДАННИ ЧРЕЗ РЕЛАЦИОНЕН СИНТЕЗ</strong></p>
+<p><strong>1. Увод</strong></p>
+<p>Информацията е ресурс със стратегическа важност. В условията на изострена конкуренция и криза в икономиката се налага ефективно управление на бизнеса. За да могат да се вземат ефективни, актуални управленски решения се налага обработката на голяма по обем информация.</p>
+<p>За подпомагане на управлението на бизнеса се налага съхраняването на големи по обеми данни. За да бъдат полезни, данните трябва да се обработят по начин, който да ги направи полезни и смислени. Данните, които са обработени и структурирани с цел полезност и смисленост за бизнеса се наричат информация. И точно тук, при структурирането на данните в информация се намесва „проектирането на бази от данни”.</p>
+<p>Данните са структурирани йерархично. Базовият елемент е „символът”. Съвкупността от символи формира „поле”. Множество от свързани помежду си полета, формира „запис”. Множеството от еднотипни записи формира „релация”/”таблица”. В контекста на базите данни имаме обекти, техните атрибути и релации помежду им. Обекта отговаря на отделна самостоятелна част от обкръжаващата ни действителност (понятие, събитие, факт), която се съхранява в базата данни. Характеристиките на обектите се наричат атрибути. Връзките между обектите се наричат „връзки”(relationships). Практиката е наложила Unified Modeling Language (UML) като ефективен и разбираем начин за изразяване на обектно-ориентирания дизайн. Най-общо UML представлява фамилия от графични нотации, обединени от общ мета модел. Затова с цел онагледяване на описваните концепции ще използваме UML графики.</p>
+<p><strong>2. Общ преглед на стратегиите при проектирането на релационни бази от данни.</strong></p>
+<p>Съществуват две основни стратегии при проектирането на бази от данни. Основната стратегия е:</p>
+<p>I. „Отгоре – надолу” ( top-down)</p>
+<p>Тя се състои от следните стъпки:</p>
+<ul>
+<li>Проектиране на концептуалната схема на базата, например чрез E-R модела</li>
+<li>Трансформиране на концептуалната схема в логическа схема на базата данни</li>
+<li>Анализ на отношенията с помощта на функционалните зависимости, като се прилагат четирите неформални мерки за качество:</li>
+<li>Неформални мерки на качеството при проектиране:
+<ul>
+<li>Семантика на атрибутите:
+<ul>
+<li>Моделиране на обекти и връзки в различни отношения</li>
+<li>Представяне на единствен тип обект или връзка в едно отношение</li>
+<li>Използване на мнемонични имена на атрибути и релационни схеми</li>
+</ul>
+</li>
+<li>Излишество в данните и аномалии при обновяване
+<ul>
+<li>Елиминиране на повтарящите се данни</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>(например чрез изнасянето им в нова релация)</p>
+<ul>
+<li>Нулеви стойности в кортежите
+<ul>
+<li>Да се избягва използването на атрибути в релационната схема, чийто стойности са в по-голямат си част „null”<br />
+(например чрез изнасянето им в нова релация)</li>
+<li>Генериране на фалшиви кортежи ( допълнителни (spurious) от изходното състояние)
+<ul>
+<li>Не трябва в отделните схеми да съществуват еднакви атрибути, които не са ключове (ПК (първичен ключ) или ВК (вторичен ключ)); Наличието на еднакви атрибути, които не са ключове, в две различни схеми, позволява дефинирането на условие за съединение в резултат на което се получават фалшиви (допълнителни) кортежи</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Функционални зависимости
+<ul>
+<li>Първа нормална форма
+<ul>
+<li>Домейните включват само атомарни (неделими) стойности</li>
+<li>Стойностите на всеки атрибут във всеки кортеж са неделими</li>
+</ul>
+</li>
+<li>Втора нормална форма
+<ul>
+<li>Всеки атрибут, който не участва в главния ключ, е пълно функционално зависим от главния ключ ПК</li>
+</ul>
+</li>
+<li>Трета нормална форма
+<ul>
+<li>Да е във 2 НФ и никой от атрибутите, който не участва в главния ключ, не е транзитивно зависим от него (ПК)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Провеждане на нормализация до трета нормална форма, за да се избегнат транзитивните и частичните функционални зависимости
+<ul>
+<li>Неудовлетворителните релационни схеми се декомпозират чрез разбиване на атрибутите им и групирането им в по-малки релационни схеми, които удовлетворяват желаната нормална форма (обикновено 3 НФ)</li>
+</ul>
+</li>
+</ul>
+<p>II. “Отдолу-нагоре” (bottom-up), или „релационнен синтез”.</p>
+<p>При „релационния синтез”, схемата на базата се разглежда като съвкупност о функционални и други типове зависимости, задавани върху атрибутите от проектанта на базата. След дефинирането на зависимостите, с помощта на алгоритъм за нормализация се синтезират релационни схеми в трета нормална форма ( 3 НФ ) чрез групиране на подходящите атрибути. Всяка релационна схема трябва да съдържа логическо смислено множество от атрибути. Схемите които не са в 3 НФ, се декомпозират. Този метод се реализира чрез следните стъпки:</p>
+<ul>
+<li>Спецификация на зависимостите върху атрибутите на базата</li>
+<li>Синтезиране на една голяма релационна схема, съдържаща всички атрибути (т.нар. универсална схема), като имената на атрибутите в нея са уникални</li>
+<li>Декомпозиция на универсалната схема във отделни релационни схеми, като се спазва:
+<ul>
+<li>Всеки атрибут да попадне в схема</li>
+<li>Да се запазят функционалните зависимости</li>
+<li>Да няма фалшиви кортежи
+<ul>
+<li>релационните схеми да са в 3 НФ</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. Защо и кога стратегията „релационнен синтез”</strong></p>
+<p>В общи линии проблемите при стратегията „релационнен синтез”, могат да се обобщят както следва:</p>
+<ul>
+<li>Проектантът на базата от данни трябва да зададе „всички” функционални зависимости между атрибутите. Тази задача не е лесна, защото пропускането на зависимости води до лош проект.</li>
+<li>Алгоритмите за създаване на релационн схема в 3 НФ не са детерминирани, защото:
+<ul>
+<li>Търси се минималното покритие на множество от функционални зависимости, а обикновено съществуват повече от едно минимално покритие и могат да се получат различни проекти</li>
+<li>Съществен е редът на прилагане на функционалните зависимости, и могат да се получат проекти с различно качество</li>
+</ul>
+</li>
+</ul>
+<p>В общи линии това води до по-ограниченото използване на стратегията „релационнен синтез” спрямо алтернативната стратегия „отгоре-надолу”.</p>
+<p>Тогава може ли да се каже „методологията релационнен синтез е по некачествена от нейната алтернатива” и да се отхвърли практическото й използване ? Определено „не” ! И причината не е в сравнението  или в методологията на сравнение, а в конкретния контекст на приложение на методологията. Ако желаете да засадите дръвче в градината си бихте използвали традиционната лопата, но за да изкопаете основите на новата си къща, бихте си наели багер. И сравнението между лопатата и багера е напълно неуместно, в определени конкретни ситуации едното е по-ефективно, а в други – другото. И така кога „релационния синтез” проявява силата си ?</p>
+<p>Майкъл Х. Ернандес в книгата си „Проектиране на база от данни” е описал практическа методология за прилагането на стратегията „отдолу-нагоре / релационнен синтез”. В голяма част от реалните проекти, поради силното навлизане на информационните технологии и настъпилата всеобща криза, на практика в малките фирми няма сертифициран специалист по разработка на дизайн на съответните релационни бази от данни. Това принуждава разработчиците на софтуер (програмистите) да разработват дизайна на базата от данни за клиентите си. А това води до лош дизайн. Научаването на релационния модел, предложен от Код през 1970 година не е тривиална задача. Но изучаването и прилагането на конкретна практически изчистена методология е по силите дори на обикновен програмист. И така, по добре е да имате добър дизайн, отколкото лош, след като не можете да имате много добър дизайн на база от данни J</p>
+<p><strong>4. Общо представяне на методологията на Майкъл Х. Ернандес за проектиране на база от данни, чрез стратегията „релационнен синтез”.</strong></p>
+<ul>
+<li>Провеждане на интервюта
+<ul>
+<li>Дефиниране на предназначението</li>
+</ul>
+</li>
+</ul>
+<p>(цел на базата)</p>
+<ul>
+<li>Дефиниране на задачите</li>
+</ul>
+<p>(конкретна функционалност)</p>
+<ul>
+<li>Определяне на теми</li>
+</ul>
+<p>(човек, място, предмет, събитие)</p>
+<ul>
+<li>Определяне на характеристики</li>
+</ul>
+<p>(на темите)</p>
+<ul>
+<li>Информационни изисквания</li>
+</ul>
+<p>(отчети – съществуващи в момента, или желани в бъдещето)</p>
+<ul>
+<li>Съставяне на пълен спъсък с полета
+<ul>
+<li>Предварителен списък с полета</li>
+<li>Списък с изчислени полета</li>
+<li>Създаване на структурата на таблиците
+<ul>
+<li>Дефиниране на предварителен списък с таблици<br />
+(използване на списъка с теми и формулирани задачи)</li>
+<li>Дефиниране на окончателен списък с таблици<br />
+(изчистване на имената на таблиците)</li>
+<li>Асоцииране на полета с всяка таблица</li>
+<li>Изчистване на полетата<br />
+(подобряване на имената на полетата, използване на идеалното поле, премахване на съставните полета и полетата с множество стойности)</li>
+<li>Изчистване на структурата на таблиците<br />
+(изчистване на излишните данни и дублиращите се полета, използване на идеалната таблица, създаване на подтаблици)</li>
+<li>Създаване на ключове за всяка таблица<br />
+(кандидат ключове, първични ключове, алтернативни ключове)</li>
+<li>Спецификации на поле<br />
+(общи, физически и логически характеристики)</li>
+<li>Създаване на релациите между таблиците
+<ul>
+<li>Определяне на съществуващите релации</li>
+<li>Създаване на релациите<br />
+(тип едно към едно, тип едно към много, тип много към много, тип рекурсивни релации)</li>
+<li>Изчистване на външните ключове<br />
+(характеристика на външния ключ)</li>
+<li>Определяне на характеристиките на релациите<br />
+(дефиниране на правила за изтриване, определяне на тип на участие, определяне на степента на участие)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>5. Провеждане на итервюта.</strong></p>
+<p>Интервютата са полезни поради следните причини:</p>
+<ul>
+<li>Осигуряват подробности за събраните образци от информационни документи (документи и справки)</li>
+<li>Осигуряват информация за начина на използване на данните</li>
+<li>Помагат при дефинирането на таблиците и полетата</li>
+<li>Помагат при дефинирането на бъдещи инфорамционни изисквания</li>
+</ul>
+<p>Основните техники за провеждане на интервю са:</p>
+<ul>
+<li>Задаване на въпроси<br />
+Бихте могли да започнете с въпроса:<br />
+„Как бихте описали всекидневната си работа ?”</li>
+<li>Определяне на теми<br />
+Когато задавате отворен въпрос, определяйте темите, подсказани в отговора на въпроса. Можете да откривате теми, като търсите <strong>съществителните</strong> в изреченията на отговора.</li>
+<li>Определяне на характеристики<br />
+След като сте определили темите, започнете да задавате конкретни въпроси за да получите описание на темите. Докато откривате подходящите съществителни в отговора, ги изброявайте на лист хартия, това се превръща в списък с характеристики. <em>Използвайте отделен лист хартия за списъка с характеристики. Не записвайте темите и характеристиките на един и същ лист !</em></li>
+<li>Преглед на образците<br />
+Прегледайте събраните образци на документи и справки, използвани във фирмата, и им определете темите и характеристиките.</li>
+<li>Определяне на информационните изисквания<br />
+Разпитайте и определете текущите и бъдещите информационни изисквания към системата. Отново извлечете темите и характеристиките от отговорите.</li>
+</ul>
+<p><strong>6. Съставяне на пълен списък с полета</strong></p>
+<ul>
+<li>Съберете в единен списък с полета, всички характеристики</li>
+<li>Премахнете елементите с едно и също име<br />
+<em>Внимание !</em> Често пъти ще откривате, че дублиращото име представлява същия тип характеристика, но на друга тема. В този случай преименувайте полето, за да отразява съответствието му със съответната схема. Например „Име” -&gt; „Име на служител”, „Име на клиент” и т.н.</li>
+<li>Премахнете елементите, представящи една и съща характеристика<br />
+Например „Продукт номер”, „Продукт пореден номер” -&gt; „Продукт номер”.</li>
+<li>Уверете се, че елементите представляват „характеристики”</li>
+<li>Премахнете всяко изчислено поле, като го включите в отделен списък с изчислени полета<br />
+Пример за такива полета: „Средна възраст”, „Общ брои клиенти” …</li>
+</ul>
+<p><strong>7. Създаване на структура на таблиците</strong></p>
+<ul>
+<li>Премахнете елементите с едно и също име<br />
+<em>Внимание !</em> Ако дублиращите се елементи представят различни теми, преименувайте всеки елемент, така че точно да определя темата която представя</li>
+<li>Премахнете елементите, представящи една и съща тема</li>
+<li>Дефинирайте окончателния списък с таблици<br />
+Този нов списък включва два елемента, които не присъстват в предварителния списък от таблици. Това са: „тип на таблицата” и „описание на таблицата”. Типовете таблици биват:</p>
+<ul>
+<li>Данни – представя тема</li>
+<li>Свързваща таблица – създава връзка между две таблици</li>
+<li>Подтаблица – съдържа полета, които са свързани с определена таблица за данни и описва темата за таблицата за данни по много специфичен начин</li>
+<li>Таблица за валидиране – съдържа данни за валидиране на таблицата с данни</li>
+</ul>
+</li>
+</ul>
+<p>Описанието на таблицата осигурява кратка и ясна дефиниция на темата, представяна от таблицата</p>
+<ul>
+<li>Задайте конкретни имена на таблиците<br />
+Именуването на таблиците е по-сложно, отколкото изглежда. Спазвайте следните общи правила при именуването:</p>
+<ul>
+<li>Създавайте уникално, описателно име, което има смисъл за цялата организация</li>
+<li>Името точно, ясно и недвусмислено определя темата на таблицата</li>
+<li>Използвайте минималния необходим брой от думи</li>
+<li>Не използвайте думи, означаващи физически характеристики Например „Запис на поръчка” вероятно означава „Поръчка”, „Клиент”.</li>
+<li>Не използвайте акроними и съкращения</li>
+<li>Не използвайте характерни ограничаващи думи. Например „Служители от София”, тъй като това би ограничило въвежданите данни и наложило използването на дублиращи структури от таблици.</li>
+<li>Всяко име трябва да определя точно една тема</li>
+<li>Използвайте характеристиките на идеалната таблица
+<ul>
+<li>Представя една единствена тема, която може да бъде обект или събитие</li>
+<li>Има първичен ключ</li>
+<li>Не съдържа съставни (от няколко полета) полета и полета с множество стойности</li>
+<li>Не съдържа изчислени полета</li>
+<li>Не съдържа дублиращи се полета<br />
+(изключение е само за външните ключове)</li>
+<li>Съдържа минимално количество излишни данни</li>
+<li>Асоциирайте полетата с конкретните таблици<br />
+Обходете всички таблици и им присвоете подходящите полета от списъка с полета</li>
+<li>Задайте конкретни имена на полетата<br />
+Спазвайте следните общи принципи:</p>
+<ul>
+<li>Създайте уникално, описателно име, което има смисъл за цялата организация. Името е уникално за цялата база от данни.</li>
+<li>Името точно, ясно и недвусмисленно определя характеристиката, която даденото поле представлява</li>
+<li>Използвайте минимален брой думи</li>
+<li>Не използвайте акроними, съкращения разумно</li>
+<li>Не използвайте двузначни думи</li>
+<li>Всяко име да представлява само една характеристика</li>
+<li>Използвайте характеристиките на идеалното поле
+<ul>
+<li>Представя отделна характеристика на темата на таблицата</li>
+<li>Съдържа само една единствена стойност</li>
+<li>Не може да бъде разделено на отделни части</li>
+<li>Не съдържа изчислени или конкатенирани стойности</li>
+<li>Името е уникално за цялата база данни</li>
+<li>Запазва свойствата си, когато присъства в повече от една таблица</li>
+<li>Съставното поле се декомпозира до съставните си полета</li>
+<li>Поле с множество стойности се изнася в отделна таблица за данни, с ключ към основната</li>
+<li>Дублиращите се полета са разновидност на поле с множество стойности. Изнася се в отделна таблица за данни, с ключ към основната.</li>
+<li>Полета с преобладаваща стойност „NULL” се изнасят в отделна подтаблица за данни, с ключ към основната. Подтаблицата представлява подчинена тема на основната таблица.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>8. Създаване на релациите между таблиците</strong></p>
+<ul>
+<li>Ключовете са решаващи за структурата на таблиците поради следните причини:
+<ul>
+<li>Те гарантират, че всеки запис в таблицата е точно идентифициран. Това се постига чрез първичния ключ.</li>
+<li>Те установяват и налагат различни типове цялост. Това се постига чрез външните ключове и възможността за съдържане на стойност „NULL”.</li>
+<li>Те се използват за създаване на релации между таблиците. Това се постига чрез различните видове съединения между таблиците (“INNER”, “LEFT” или „RIGHT” JOIN).</li>
+<li>Създаване на ключове за всяка таблица
+<ul>
+<li>Кандидат ключове<br />
+Това е поле или група от полета които определят еднозначно всяка инстанция (ред) на таблицата. Характеристиките на кандидат ключа са:</p>
+<ul>
+<li>Не може да бъде съставно поле</li>
+<li>Трябва да съдържа уникални стойности</li>
+<li>Не може да съдържа „NULL”</li>
+<li>Стойността му не трябва да нарушава сигурността (т.е. не трябва да е например ЕГН или парола)</li>
+<li>Стойноста му трябва да е задължителна</li>
+<li>Трябва да се състои от минимален брой полета</li>
+<li>Стойността му трябва уникално и пряко да определя(идентифирца) всяко поле в записа</li>
+<li>Не трябва да се променя</li>
+<li>Изкуствен кандидат ключ<br />
+Когато определите, че таблицата не съдържа кандидат ключ, можете да създадете и използвате <em>изкуствен</em> такъв. Обикновено това е поле от тип цяло число, с ограничение “not null”.</li>
+<li>Първични ключове
+<ul>
+<li>Полето на първичния ключ идентифицира пряко таблицата в структурата на базата данни и помага да се установят релации с другите таблици.</li>
+<li>Стойността на първичния ключ идентифицира уникално даден запис в рамките на таблицата и представя този запис в цялата база данни. Също така предпазва от дублиране на запис в таблицата.</li>
+<li>Отговаря на същите характеристики, както и кандидат ключовете</li>
+<li>Ако имате прост (от едно поле) и съставен кандидат ключ, изберете за първичен простия кандидат ключ</li>
+<li>В името на ключа да присъства и името на таблицата</li>
+<li>Уверете се че първичния ключ пряко идентифицира всяка стойност в таблицата. Това е много важно условие. Всяка стойност на поле в таблицата трябва да е пряко определена от първичния ключ. Например „номера на фактура” еднозначно определя „клиента”, но не и телефония му номер (тъй като той е зависим от „клиента”, а не от номера на фактурата).</li>
+<li>Всяка таблица трябва да има само един първичен ключ</li>
+<li>Всеки първичен ключ в базата данни е уникален, освен за подтаблиците (които могат да имат първичен ключ на основната таблица)</li>
+<li>Кандидат ключовете, които не са избрани за първичен ключ, се обозначават като алтернативни ключове</li>
+<li>Цялостта на ниво таблица, гарантира следното:
+<ul>
+<li>Не съществуват дублиращи се записи в таблицата</li>
+<li>Първичния ключ идентифицира пряко всеки запис в таблицата</li>
+<li>Стойността на първичния ключ е уникална</li>
+<li>Стойностите на първичния ключ не са „NULL”</li>
+<li>Преглед на първоначалните структури на таблиците<br />
+След като основните дефиниции на таблиците са завършени, трябва да се проведат интервюта с потребителите и ръководството, за да се верифицира извършената работа. Тези интервюта трябва да изпълнят следните задачи:</p>
+<ul>
+<li>Да гарантирате, че в базата данни са представени подходящите теми</li>
+<li>Имената и описанията на таблиците са подходящи и смислени за всички</li>
+<li>Имената и описанията на полетата са подходящи и смислени за всички</li>
+<li>Всички подходящи полета са присвоени на таблицата</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>9. Заключение</strong></p>
+<p><strong>„<em>Аз имам просто, но силно верую. Начинът на събиране, обработка и използване на информацията предопределя дали ще спечелите, или ще загубите</em>.”</strong> <strong>Бил Гейтс</strong></p>
+<p>Силата на всяка методология е в последователното й прилагане. Не си спестявайте стъпките по прилагането на методологията. Както се казва „по-лошото от липса на методология, е непоследователното й прилагане”. Така че спазвайте описаните стъпки и ще получите таблици в 3 нормална форма. Поздравления !</p>
+<ul>
+<li><strong>Използвана литература:</strong></li>
+</ul>
+<ol>
+<li>Пенева, Юлиана, доц. д-р<br />
+„Бази от данни”, първа част (2005)<br />
+издателство „Регалия 6”<br />
+ISBN 954-745-088-3</li>
+<li>Пенева, Юлиана, доц. д-р<br />
+Тупаров, Георги<br />
+„Бази от данни”, втора част (2004)<br />
+издателство „Регалия 6”<br />
+ISBN 954-745-078-6</li>
+<li>Ернандес, Майкъл Х.<br />
+„Проектиране на бази от данни” (2004)<br />
+издателство „СофтПрес” ООД<br />
+ISBN 954-685-301-1</li>
+<li>Гейтс, Бил<br />
+„Бизнес със скоростта на мисълта” (1999)<br />
+издателска къща „Сиела”<br />
+ISBN 954-649-211-6</li>
+<li>Фаулър, Мартин<br />
+„UML основи” (2007)<br />
+издателство „СофтПрес” ООД<br />
+ISBN 978-954-685-306-6</li>
+</ol>
+                     </div>
+
+        <div class="post-below-content">
+                        <p class="tags-below-content"></p>
+        </div>
+
+            <div class="post-nav clearfix">
+        <div class="nav-previous"><a href="http://wp.mom2000.com/archives/37" rel="prev">Инсталация на Windows XP върху Asus Eee PC 900 <span class="meta-nav"><i class="mdf mdf-caret-right"></i></span></a></div>
+        <div class="nav-next"><a href="http://wp.mom2000.com/archives/665" rel="next"><span class="meta-nav"><i class="mdf mdf-caret-left"></i></span> Новини връзки</a></div>
+    </div>
+        
+<div id="comments" class="comments-section grid-col-16 clearfix">
+
+
+
+      
+	  
+      				<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/archives/990#respond" style="display:none;">Cancel reply</a></small></h3><p class="must-log-in">You must be <a href="http://wp.mom2000.com/wp-login.php?redirect_to=http%3A%2F%2Fwp.mom2000.com%2Farchives%2F990">logged in</a> to post a comment.</p>		</div><!-- #respond -->
+		
+</div>    </div><!-- inner-content-section ends -->
+    
+<div id="sidebar-right-section" class="sidebar-right-section grid-float-left">
+    
+    <div id="search-2" class="widget widget_search">
+<form role="search" method="get" id="searchform" action="http://wp.mom2000.com/">
+    <div class="search-box clearfix">
+        <input type="text" value="" name="s" id="s" placeholder="Search..." />
+        <input type="submit" id="searchsubmit" value="Go" />
+    </div>
+</form></div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<h4 class="widget-title">Recent Posts</h4>		<ul>
+					<li>
+				<a href="http://wp.mom2000.com/archives/3286">The Art of Unix Programming</a>
+						</li>
+					<li>
+				<a href="http://wp.mom2000.com/archives/3224">Code snippets</a>
+						</li>
+					<li>
+				<a href="http://wp.mom2000.com/archives/274">Връзки към полезни програми</a>
+						</li>
+					<li>
+				<a href="http://wp.mom2000.com/archives/2035">хумор, забава, забавно, funny</a>
+						</li>
+					<li>
+				<a href="http://wp.mom2000.com/archives/3191">Arduino</a>
+						</li>
+				</ul>
+		</div>		<div id="recent-comments-2" class="widget widget_recent_comments"><h4 class="widget-title">Recent Comments</h4><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://wp.mom2000.com/?p=180' rel='external nofollow' class='url'>Програмиране &#8211; размисли</a></span> on <a href="http://wp.mom2000.com/archives/3191#comment-2">Arduino</a></li><li class="recentcomments"><span class="comment-author-link"><a href='http://wp.mom2000.com/?p=180' rel='external nofollow' class='url'>Програмиране &#8211; размисли</a></span> on <a href="http://wp.mom2000.com/archives/2035#comment-1">хумор, забава, забавно, funny</a></li></ul></div><div id="archives-2" class="widget widget_archive"><h4 class="widget-title">Archives</h4>		<ul>
+			<li><a href='http://wp.mom2000.com/archives/date/2016/10'>October 2016</a></li>
+	<li><a href='http://wp.mom2000.com/archives/date/2016/04'>April 2016</a></li>
+		</ul>
+		</div><div id="categories-2" class="widget widget_categories"><h4 class="widget-title">Categories</h4>		<ul>
+	<li class="cat-item cat-item-1"><a href="http://wp.mom2000.com/archives/category/uncategorized" >Uncategorized</a>
+</li>
+		</ul>
+</div><div id="meta-2" class="widget widget_meta"><h4 class="widget-title">Meta</h4>			<ul>
+						<li><a href="http://wp.mom2000.com/wp-login.php">Log in</a></li>
+			<li><a href="http://wp.mom2000.com/feed">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wp.mom2000.com/comments/feed">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
+			</div></div></div><!-- Content-section ends here -->
+
+</div> <!-- main section ends -->
+
+
+                        <div class="footer-bg-section clearfix">
+                <div id="footer-section" class="footer-section">
+                                            <div id="copyright" class="copyright">Copyright &#169; 2020  | <a href="http://www.wordpress.org">Powered by WordPress</a> | Actuate Theme by <a href="http://www.mudthemes.com/" target="_blank">mudThemes</a></div>
+                                                    <div class="socialicons-mi"></div><div class="socialicons-mo"></div>
+                </div>
+            </div>
+                    </div><!-- wrapper ends -->
+    </div><!-- parent-wrapper ends -->
+    <script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/comment-reply.min.js?ver=4.5'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/js/superfish.min.js?ver=1.4.8'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/js/jquery.sidr.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/jquery/jquery.color.min.js?ver=2.1.1'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/js/custom.js?ver=1.0.1.4'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/wp-embed.min.js?ver=4.5'></script>
+</body>
+</html>

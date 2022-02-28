@@ -1,0 +1,324 @@
+<!DOCTYPE html >
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="http://wp.mom2000.com/xmlrpc.php" />
+<title>The Art of Unix Programming &#8211; размисли</title>
+<link rel="alternate" type="application/rss+xml" title="размисли &raquo; Feed" href="http://wp.mom2000.com/feed" />
+<link rel="alternate" type="application/rss+xml" title="размисли &raquo; Comments Feed" href="http://wp.mom2000.com/comments/feed" />
+<link rel="alternate" type="application/rss+xml" title="размисли &raquo; The Art of Unix Programming Comments Feed" href="http://wp.mom2000.com/archives/3286/feed" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/wp.mom2000.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.5"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;if(!g||!g.fillText)return!1;switch(g.textBaseline="top",g.font="600 32px Arial",a){case"flag":return g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3;case"diversity":return g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e;case"simple":return g.fillText(h(55357,56835),0,0),0!==g.getImageData(16,16,1,1).data[0];case"unicode8":return g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='google-font-merriweather-css'  href='//fonts.googleapis.com/css?family=Merriweather%3A400%2C300%2C300italic%2C700%2C400italic%2C700italic%2C900%2C900italic&#038;ver=4.5' type='text/css' media='all' />
+<link rel='stylesheet' id='google-font-oswald-css'  href='//fonts.googleapis.com/css?family=Oswald%3A400%2C300%2C700&#038;ver=4.5' type='text/css' media='all' />
+<link rel='stylesheet' id='actuate-font-awesome-css'  href='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/css/font-awesome.4.4.0.css?ver=4.4.0' type='text/css' media='all' />
+<link rel='stylesheet' id='actuate-stylesheet-css'  href='http://wp.mom2000.com/wp-content/themes/actuate/style.css?ver=1.0.1.4' type='text/css' media='all' />
+<script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/jquery/jquery.js?ver=1.12.3'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.0'></script>
+<link rel='https://api.w.org/' href='http://wp.mom2000.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://wp.mom2000.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://wp.mom2000.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Code snippets' href='http://wp.mom2000.com/archives/3224' />
+<meta name="generator" content="WordPress 4.5" />
+<link rel="canonical" href="http://wp.mom2000.com/archives/3286" />
+<link rel='shortlink' href='http://wp.mom2000.com/?p=3286' />
+<link rel="alternate" type="application/json+oembed" href="http://wp.mom2000.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwp.mom2000.com%2Farchives%2F3286" />
+<link rel="alternate" type="text/xml+oembed" href="http://wp.mom2000.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwp.mom2000.com%2Farchives%2F3286&#038;format=xml" />
+
+<!--[if lt IE 9]><script type='text/javascript' src='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/js/respond.min.js?ver=1.4.2'></script><![endif]-->
+<style type="text/css">
+.wrapper .site-title a{color:#555555;}.wrapper .site-description{color:#555555;}.wrapper .loop-post-title h1 a{color:#444444;}.wrapper .loop-post-meta{color:#000000;}.wrapper .loop-post-excerpt p{color:#000000;}body.single .wrapper .post-title h1{color:#000000;}body.single .wrapper .post-meta,.single .post-meta .post-meta-comments a{color:#000000;}body.single .wrapper .post-content{color:#000000;}
+
+</style>
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body class="singular single single-post postid-3286 single-format-standard orange right_sidebar theme-wide">
+    <div id="parent-wrapper" class="parent-wrapper grid-col-16">
+        <div id="wrapper" class="wrapper grid-col-16">
+            
+                        <div class="header-bg-section clearfix">
+                <div id="header-section" class="header-section grid-col-16 clearfix">
+                    <div id="logo-section" class="logo-section grid-col-16">        
+        <div id="site-title" class="site-title">
+            <a href="http://wp.mom2000.com/" title="размисли | " rel="home">размисли</a>
+        </div>
+        
+    </div>
+                                                    <div id="sidrmenu-section" class="sidrmenu-section">    <div id="sidr-menu">
+    	<ul>
+            <li class="page_item page-item-160"><a href="http://wp.mom2000.com/">Препоръчано</a></li>
+        </ul>
+    </div>
+</div>
+                            <div id="nav-section" class="nav-section grid-col-16">
+                                <div id="primarymenu-resp" class="primarymenu-resp"><i class="mdf mdf-bars"></i><span>Menu</span></div>
+                                <div id="primarymenu-section" class="primarymenu-section clearfix nav">    <div id="menu">
+    	<ul class="sf-menu" id="actuate_menu">
+            <li class="page_item page-item-160"><a href="http://wp.mom2000.com/">Препоръчано</a></li>
+        </ul>
+    </div>
+</div>
+                            </div>
+                        
+                </div><!-- header section ends -->
+            </div><!-- header bg section ends -->
+            		
+            <div id="main-section" class="main-section clearfix">
+
+<div id="content-section" class="content-section grid-col-16 clearfix">
+    <div id="post-3286" class="inner-post-section post-3286 post type-post status-publish format-standard hentry category-uncategorized">
+	
+        <div class="post-title">
+                            <h1 class="inner-page">The Art of Unix Programming</h1>
+            
+                        <div class="post-meta">
+                <span class="entry-date">October 28, 2016</span><span class="meta-author-url">, By <span class="author vcard"><a href="http://wp.mom2000.com/archives/author/admin" title="Posts by admin" rel="author">admin</a></span> </span> | <span class="post-meta-comments"><a href=http://wp.mom2000.com/archives/3286#respond>Leave a reply</a></span>            </div>
+                </div>
+
+        <div class="post-content">
+             <p><a href="http://www.catb.org/esr/writings/taoup/">The Art of Unix Programming</a><br />
+<span id="more-3286"></span></p>
+<ul>
+<li><b>More of the Unix philosophy was implied not by what these elders said but by what they did and the </b><b>example Unix itself set. Looking at the whole, we can abstract the following ideas:</b>
+<ol>
+<li>Rule of <b>Modularity</b>: Write simple parts connected by clean interfaces.</li>
+<li>Rule of <b>Clarity</b>: Clarity is better than cleverness.</li>
+<li>Rule of <b>Composition</b>: Design programs to be connected to other programs.</li>
+<li>Rule of <b>Separation</b>: Separate policy from mechanism; separate interfaces from engines.</li>
+<li>Rule of <b>Simplicity</b>: Design for simplicity; add complexity only where you must.</li>
+<li>Rule of <b>Parsimony</b>: Write a big program only when it is clear by demonstration that nothing else will do.</li>
+<li>Rule of <b>Transparency</b>: Design for visibility to make inspection and debugging easier.<br />
+&#8230; A software system is transparent when you can look at it and immediately understand what it is doing and how. It is discoverable when it has facilities for monitoring and display of internal state so that your program not only functions well but can be seen to function well.<br />
+&#8230; For a program to demonstrate its own correctness, it needs to be using input and output formats sufficiently simple so that the proper relationship between valid input and correct output is easy to check.<br />
+&#8230; The objective of designing for transparency and discoverability should also encourage simple interfaces that can easily be manipulated by other programs — in particular, test and monitoring harnesses and debugging scripts.</li>
+<li>Rule of <b>Robustness</b>: Robustness is the child of transparency and simplicity.</li>
+<li>Rule of <b>Representation</b>: Fold knowledge into data so program logic can be stupid and robust.</li>
+<li>Rule of <b>Least Surprise</b>: In interface design, always do the least surprising thing.<br />
+&#8230; demand the least new learning from the user.<br />
+&#8230; most effectively connect to the user’s pre-existing knowledge.<br />
+&#8230; Pay attention to your expected audience. They may be end users, they may be other programmers, or they may be system administrators. What is least surprising can differ among these groups.<br />
+&#8230; Pay attention to tradition. The Unix world has rather well-developed conventions about things like the format of configuration and run-control files, command-line switches, and the like. These traditions exist for a good reason: to tame the learning curve. Learn and use them.</li>
+<li>Rule of <b>Silence</b>: When a program has nothing surprising to say, it should say nothing.<br />
+&#8230; When your program’s output becomes another’s input, it should be easy to pick out the needed bits.<br />
+&#8230; Well-designed programs treat the user’s attention and concentration as a precious and limited resource, only to be claimed when necessary.</li>
+<li>Rule of <b>Repair</b>: When you must fail, fail noisily and as soon as possible.<br />
+&#8230; Software should be transparent in the way that it fails, as well as in normal operation. It’s best when software can cope with unexpected conditions by adapting to them, but the worst kinds of bugs are those in which the repair doesn’t succeed and the problem quietly causes corruption that doesn’t show up until much later.<br />
+&#8230; Therefore, write your software to cope with incorrect inputs and its own execution errors as gracefully as possible. But when it cannot, make it fail in a way that makes diagnosis of the problem as easy as possible.<br />
+&#8230; Consider also Postel’s Prescription:10 “Be liberal in what you accept, and conservative in what you send”. Postel was speaking of network service programs, but the underlying idea is more general. Well-designed programs cooperate with other programs by making as much sense as they can from ill-formed inputs; they either fail noisily or pass strictly clean and correct data to the next program.</li>
+<li>in the chain.</li>
+<li>Rule of <b>Economy</b>: Programmer time is expensive; conserve it in preference to machine time.<br />
+&#8230; most applications would be written in higher-level languages like Perl, Tcl, Python, Java, Lisp and even shell.</li>
+<li>Rule of <b>Generation</b>: Avoid hand-hacking; write programs to write programs when you can.<br />
+&#8230; In the Unix tradition, code generators are heavily used to automate error-prone detail work. Parser/lexer generators are the classic examples; makefile generators and GUI interface builders are newer ones.</li>
+<li>Rule of <b>Optimization</b>: Prototype before polishing. Get it working before you optimize it.<br />
+&#8230; &#8220;Prototyping is important for system design as well as optimization — it is much easier to judge whether a prototype does what you want than it is to read a long specification.&#8221; MikeLesk<br />
+&#8230; “Make it run, then make it right, then make it fast” Kent Beck<br />
+&#8230; &#8220;Using prototyping to learn which features you don’t have to implement helps optimization for performance; you don’t have to optimize what you don’t write. The most powerful optimization tool in existence may be the delete key. One of my most productive days was throwing away 1000 lines of code.&#8221; KenThompson</li>
+<li>Rule of <b>Diversity</b>: Distrust all claims for “one true way”.<br />
+&#8230; Even the best software tools tend to be limited by the imaginations of their designers. Nobody is smart enough to optimize for everything, nor to anticipate all the uses to which their software might be put. Designing rigid, closed software that won’t talk to the rest of the world is an unhealthy form of arrogance.<br />
+&#8230; Therefore, the Unix tradition includes a healthy mistrust of “one true way” approaches to software design or implementation. It embraces multiple languages, open extensible systems, and customization hooks everywhere.</li>
+<li>Rule of <b>Extensibility</b>: Design for the future, because it will be here sooner than you think.<br />
+&#8230; Never assume you have the final answer.<br />
+&#8230; Always, always either include a version number,<br />
+or compose the format from self-contained, selfdescribing clauses in such a way that new clauses can be readily added and old ones dropped without confusing format-reading code.<br />
+&#8230; When you design code, organize it so future developers will be able to plug new functions into the architecture without having to scrap and rebuild the architecture.</li>
+</ol>
+</li>
+<li><b>Compactness</b>
+<ul>
+<li><b>K.I.S.S. keep it simple</b></li>
+<li>size of a module 200 &#8211; 400 logical lines of code (x2 for physical lines)</li>
+<li>entry points 7 (+-2)</li>
+<li>semi-compact C and Python [and PHP &#8211;Ed.]</li>
+</ul>
+</li>
+<li><b>Orthogonality</b>
+<ul>
+<li>In a purely orthogonal design, operations do not have side effects; each action (whether it&#8217;s an API call, a macro invocation, or a language operation) changes just one thing without affecting others. There is one and only one way to change each property of whatever system you are controlling.</li>
+<li><b>D.R.Y. don&#8217;t repeat yourself [for code &#8211;Ed.]</b></li>
+<li>
+<div><a>SPOT Rule: single point of truth [for data &#8211;Ed.]</a></div>
+</li>
+</ul>
+</li>
+<li><b>Top-Down versus Bottom-Up</b>
+<ul>
+<li>In self-defense against this, programmers try to do both things — express the abstract specification as top-down application logic, and capture a lot of low-level domain primitives in functions or libraries, so they can be reused when the high-level design changes.</li>
+</ul>
+</li>
+<li><b>Doug McIlroy, the inventor of Unix pipes and one of the founders of the Unix tradition, had this to say at the time [McIlroy78]:</b>
+<ul>
+<li>Make each program do one thing well. To do a new job, build afresh rather than complicate old programs by adding new features.</li>
+<li>Expect the output of every program to become the input to another, as yet unknown, program. Don’t clutter output with extraneous information. Avoid stringently columnar or binary input formats. Don’t insist on interactive input.</li>
+<li>Design and build software, even operating systems, to be tried early, ideally within weeks. Don’t hesitate to throw away the clumsy parts and rebuild them.</li>
+<li>Use tools in preference to unskilled help to lighten a programming task, even if you have to detour to build the tools and expect to throw some of them out after you’ve finished using them.
+<ul>
+<li><b>He later summarized it this way (quoted in A Quarter Century of Unix [Salus]): This is the Unix philosophy:</b>
+<ol>
+<li>Write programs that do one thing and do it well.</li>
+<li>Write programs to work together.</li>
+<li>Write programs to handle text streams, because that is a universal interface.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Rob Pike, who became one of the great masters of C, offers a slightly different angle in Notes on C </b><b>Programming [Pike]:</b>
+<ol>
+<li>You can’t tell where a program is going to spend its time. Bottlenecks occur in surprising places, so don’t try to second guess and put in a speed hack until you’ve proven that’s where the bottleneck is.</li>
+<li>Measure. Don’t tune for speed until you’ve measured, and even then don’t unless one part of the code overwhelms the rest.</li>
+<li>Fancy algorithms are slow when n is small, and n is usually small. Fancy algorithms have big constants. Until you know that n is frequently going to be big, don’t get fancy. (Even if n does get big, use Rule 2 first.)</li>
+<li>Fancy algorithms are buggier than simple ones, and they’re much harder to implement. Use simple algorithms as well as simple data structures.</li>
+<li>Data dominates. If you’ve chosen the right data structures and organized things well, the algorithms will almost always be self-evident. Data structures, not algorithms, are central to programming.</li>
+</ol>
+</li>
+<li><b>Applying the Unix Philosophy</b>
+<ul>
+<li>Everything that can be a source- and destination-independent filter should be one.</li>
+<li>Data streams should if at all possible be textual (so they can be viewed and filtered with standard tools).</li>
+<li>Database layouts and application protocols should if at all possible be textual (human-readable and human-editable).</li>
+<li>Complex front ends (user interfaces) should be cleanly separated from complex back ends.</li>
+<li>Whenever possible, prototype in an interpreted language before coding C.</li>
+<li>Mixing languages is better than writing everything in one, if and only if using only that one is likely to overcomplicate the program.</li>
+<li>Be generous in what you accept, rigorous in what you emit.</li>
+<li>When filtering, never throw away information you don’t need to.</li>
+<li>Small is beautiful. Write programs that do as little as is consistent with getting the job done.</li>
+</ul>
+</li>
+<li><b>Attitude Matters Too</b>
+<ul>
+<li>When you see the right thing, do it — this may look like more work in the short term, but it’s the path of least effort in the long run.</li>
+<li>If you don’t know what the right thing is, do the minimum necessary to get the job done, at least until you figure out what the right thing is.</li>
+<li>You have to believe that software design is a craft worth all the intelligence, creativity, and passion you can muster.</li>
+<li>If someone has already solved a problem once, don’t let pride or politics suck you into solving it a second time rather than re-using.</li>
+<li>And never work harder than you have to; work smarter instead, and save the extra effort for when you need it.</li>
+<li>Lean on your tools and automate everything you can.</li>
+<li>stop and think; ask yourself what you’ve forgotten.</li>
+<li>Why do you design software instead of doing something else to make money or pass the time? You must have thought software was worthy of your passion once.</li>
+<li>You need to care. You need to play. You need to be willing to explore.</li>
+</ul>
+</li>
+<li>Unix has a couple of unifying ideas or metaphors that shape its APIs
+<ul>
+<li>“everything is a file”</li>
+<li>and the pipe metaphor built on top of it</li>
+</ul>
+</li>
+</ul>
+<div></div>
+<div></div>
+<div><a href="http://www.catb.org/esr/writings/taoup/">The Art of Unix Programming</a></div>
+<div><a href="http://www.faqs.org/docs/artu/ch04s02.html" rev="en_rl_small">http://www.faqs.org/docs/artu/ch04s04.html</a></div>
+                     </div>
+
+        <div class="post-below-content">
+                        <p class="tags-below-content"></p>
+        </div>
+
+            <div class="post-nav clearfix">
+        <div class="nav-previous"><a href="http://wp.mom2000.com/archives/3224" rel="prev">Code snippets <span class="meta-nav"><i class="mdf mdf-caret-right"></i></span></a></div>
+        <div class="nav-next"></div>
+    </div>
+        
+<div id="comments" class="comments-section grid-col-16 clearfix">
+
+
+
+      
+	  
+      				<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/archives/3286#respond" style="display:none;">Cancel reply</a></small></h3><p class="must-log-in">You must be <a href="http://wp.mom2000.com/wp-login.php?redirect_to=http%3A%2F%2Fwp.mom2000.com%2Farchives%2F3286">logged in</a> to post a comment.</p>		</div><!-- #respond -->
+		
+</div>    </div><!-- inner-content-section ends -->
+    
+<div id="sidebar-right-section" class="sidebar-right-section grid-float-left">
+    
+    <div id="search-2" class="widget widget_search">
+<form role="search" method="get" id="searchform" action="http://wp.mom2000.com/">
+    <div class="search-box clearfix">
+        <input type="text" value="" name="s" id="s" placeholder="Search..." />
+        <input type="submit" id="searchsubmit" value="Go" />
+    </div>
+</form></div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<h4 class="widget-title">Recent Posts</h4>		<ul>
+					<li>
+				<a href="http://wp.mom2000.com/archives/3286">The Art of Unix Programming</a>
+						</li>
+					<li>
+				<a href="http://wp.mom2000.com/archives/3224">Code snippets</a>
+						</li>
+					<li>
+				<a href="http://wp.mom2000.com/archives/274">Връзки към полезни програми</a>
+						</li>
+					<li>
+				<a href="http://wp.mom2000.com/archives/2035">хумор, забава, забавно, funny</a>
+						</li>
+					<li>
+				<a href="http://wp.mom2000.com/archives/3191">Arduino</a>
+						</li>
+				</ul>
+		</div>		<div id="recent-comments-2" class="widget widget_recent_comments"><h4 class="widget-title">Recent Comments</h4><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://wp.mom2000.com/?p=180' rel='external nofollow' class='url'>Програмиране &#8211; размисли</a></span> on <a href="http://wp.mom2000.com/archives/3191#comment-2">Arduino</a></li><li class="recentcomments"><span class="comment-author-link"><a href='http://wp.mom2000.com/?p=180' rel='external nofollow' class='url'>Програмиране &#8211; размисли</a></span> on <a href="http://wp.mom2000.com/archives/2035#comment-1">хумор, забава, забавно, funny</a></li></ul></div><div id="archives-2" class="widget widget_archive"><h4 class="widget-title">Archives</h4>		<ul>
+			<li><a href='http://wp.mom2000.com/archives/date/2016/10'>October 2016</a></li>
+	<li><a href='http://wp.mom2000.com/archives/date/2016/04'>April 2016</a></li>
+		</ul>
+		</div><div id="categories-2" class="widget widget_categories"><h4 class="widget-title">Categories</h4>		<ul>
+	<li class="cat-item cat-item-1"><a href="http://wp.mom2000.com/archives/category/uncategorized" >Uncategorized</a>
+</li>
+		</ul>
+</div><div id="meta-2" class="widget widget_meta"><h4 class="widget-title">Meta</h4>			<ul>
+						<li><a href="http://wp.mom2000.com/wp-login.php">Log in</a></li>
+			<li><a href="http://wp.mom2000.com/feed">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wp.mom2000.com/comments/feed">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
+			</div></div></div><!-- Content-section ends here -->
+
+</div> <!-- main section ends -->
+
+
+                        <div class="footer-bg-section clearfix">
+                <div id="footer-section" class="footer-section">
+                                            <div id="copyright" class="copyright">Copyright &#169; 2020  | <a href="http://www.wordpress.org">Powered by WordPress</a> | Actuate Theme by <a href="http://www.mudthemes.com/" target="_blank">mudThemes</a></div>
+                                                    <div class="socialicons-mi"></div><div class="socialicons-mo"></div>
+                </div>
+            </div>
+                    </div><!-- wrapper ends -->
+    </div><!-- parent-wrapper ends -->
+    <script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/comment-reply.min.js?ver=4.5'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/js/superfish.min.js?ver=1.4.8'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/js/jquery.sidr.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/jquery/jquery.color.min.js?ver=2.1.1'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-content/themes/actuate/assets/global/js/custom.js?ver=1.0.1.4'></script>
+<script type='text/javascript' src='http://wp.mom2000.com/wp-includes/js/wp-embed.min.js?ver=4.5'></script>
+</body>
+</html>
